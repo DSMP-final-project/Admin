@@ -1,0 +1,26 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 250px;
+}
+
+.sidenav-content {
+  padding: 20px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.active-link {
+  background-color: rgba(0, 0, 0, 0.04);
+}
