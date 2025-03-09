@@ -1,24 +1,30 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
-import {map, Observable} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import { Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  url = "http://localhost:8083/login";
+  baseUrl = "http://localhost:8083";
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {
+  }
 
   login(obj: any): Observable<any> {
-    return this.http.post(this.url,
+    return this.http.post(`${this.baseUrl}/login`,
       {
-      password: obj.password,
-      email: obj.email
-    },
+        password: obj.password,
+        email: obj.email
+      },
       {
-      observe: 'response',
-      withCredentials: true
-    })}
+        observe: 'response',
+        withCredentials: true
+      })
+  }
+
+  logout(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/auth/logout`, {withCredentials: true});
+  }
 }

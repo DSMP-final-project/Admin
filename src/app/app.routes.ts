@@ -4,8 +4,6 @@ import {CustomerComponent} from "./components/customer/customer.component";
 import {OrderComponent} from "./components/order/order.component";
 import {ProductComponent} from "./components/product/product.component";
 import {LoginComponent} from "./components/login/login.component";
-import {StatsComponent} from "./components/stats/stats.component";
-import {SettingComponent} from "./components/setting/setting.component";
 
 export const routes: Routes = [
   {
@@ -25,13 +23,8 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/dashboard/stats',
+        redirectTo: '/dashboard/customer',
         pathMatch: 'full'
-      },
-
-      {
-        path: 'stats',
-        component: StatsComponent,
       },
 
       {
@@ -47,12 +40,7 @@ export const routes: Routes = [
       {
         path: 'product',
         component: ProductComponent,
-      },
-
-      {
-        path: 'setting',
-        component: SettingComponent,
-      },
+      }
     ]
   },
 

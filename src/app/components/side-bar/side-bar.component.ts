@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-side-bar',
@@ -29,7 +30,7 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
         <span class="toolbar-spacer"></span>
       </div>
       <div>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="handleSignOut()">
           <mat-icon>logout</mat-icon>
         </button>
       </div>
@@ -38,10 +39,6 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
     <mat-sidenav-container class="sidenav-container">
       <mat-sidenav #sidenav mode="side" class="sidenav">
         <mat-nav-list>
-          <a mat-list-item routerLink="/dashboard/stats" ariaCurrentWhenActive="page">
-            <mat-icon matListItemIcon>bar_chart</mat-icon>
-            <span matListItemTitle>Stats</span>
-          </a>
           <a mat-list-item routerLink="/dashboard/customer" ariaCurrentWhenActive="page">
             <mat-icon matListItemIcon>person</mat-icon>
             <span matListItemTitle>Customer</span>
@@ -54,17 +51,13 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
             <mat-icon matListItemIcon>inventory_2</mat-icon>
             <span matListItemTitle>Product</span>
           </a>
-          <a mat-list-item routerLink="/dashboard/setting" ariaCurrentWhenActive="page">
-            <mat-icon matListItemIcon>settings</mat-icon>
-            <span matListItemTitle>Setting</span>
-          </a>
         </mat-nav-list>
       </mat-sidenav>
 
       <mat-sidenav-content class="sidenav-content">
         <h1>Welcome to {{ title }}!</h1>
         <p>This is the main content area. Select an item from the side navigation to get started.</p>
-        <router-outlet />
+        <router-outlet/>
       </mat-sidenav-content>
     </mat-sidenav-container>
   `,
@@ -72,4 +65,20 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 })
 export class SideBarComponent {
   title: string = 'sid bar';
+
+  constructor(private readonly router: Router) {
+  }
+
+  readonly userService = inject(UserService);
+
+  handleSignOut() {
+    this.userService.logout().subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: (e) => {
+        console.error(e)
+      }
+    })
+  }
 }

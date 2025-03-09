@@ -72,7 +72,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
 
-  constructor(private roter: Router) {
+  constructor(private readonly router: Router) {
   }
 
   readonly userService = inject(UserService);
@@ -107,7 +107,7 @@ export class LoginComponent {
             .map((auth: any) => auth.authority);
 
           if (roles == 'ROLE_ADMIN') {
-            this.roter.navigate(['/dashboard']);
+            this.router.navigate(['/dashboard']);
           }
 
         },
