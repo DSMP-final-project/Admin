@@ -16,6 +16,9 @@ import {RouterLink} from "@angular/router";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {ProductService} from "../../service/product.service";
+import {MatDialog} from "@angular/material/dialog";
+import {DeleteConfirmComponent} from "./delete-confirm/delete-confirm.component";
+import {ManageProductComponent} from "./manage-product/manage-product.component";
 
 @Component({
   selector: 'app-product',
@@ -55,7 +58,7 @@ import {ProductService} from "../../service/product.service";
           </a>
         </form>
 
-        <button mat-flat-button style="background-color: #3f51b5; color: white">+ Add Product</button>
+        <button mat-flat-button style="background-color: #3f51b5; color: white" (click)="newProduct()">+ Add Product</button>
       </div>
     </div>
     <div class="col-12">
@@ -78,7 +81,6 @@ import {ProductService} from "../../service/product.service";
           <td>
             <div class="context">
               {{ item?.propertyId }} &nbsp;
-              <!--<mat-icon (click)="copyText(item?.propertyId)">content_copy</mat-icon>-->
             </div>
           </td>
           <td>
@@ -166,6 +168,9 @@ export class ProductComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  constructor(private readonly matDialog: MatDialog) {
+  }
+
   ngOnInit(): void {
     this.loadAllProducts();
   }
@@ -197,8 +202,32 @@ export class ProductComponent implements OnInit {
   }
 
   deleteConfirm(item: any) {
+    let matDialogRef = this.matDialog.open(
+      DeleteConfirmComponent,
+      {
+        width: '500px',
+        data: {productId: item.propertyId},
+      }
+    )
   }
 
   openUpdateProductForm(item: any) {
+    let matDialogRef=this.matDialog.open(
+      ManageProductComponent,
+      {
+        width: '500px',
+        data: {item: item,type:"Update"},
+      }
+    )
+  }
+
+  newProduct(){
+    let matDialogRef=this.matDialog.open(
+      ManageProductComponent,
+      {
+        width: '500px',
+        data: {type:"Add"},
+      }
+    )
   }
 }
