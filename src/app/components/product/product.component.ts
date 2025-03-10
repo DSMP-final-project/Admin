@@ -19,6 +19,7 @@ import {ProductService} from "../../service/product.service";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteConfirmComponent} from "./delete-confirm/delete-confirm.component";
 import {ManageProductComponent} from "./manage-product/manage-product.component";
+import {ManageProductImagesComponent} from "./manage-product-image/manage-product-image.component";
 
 @Component({
   selector: 'app-product',
@@ -74,6 +75,7 @@ import {ManageProductComponent} from "./manage-product/manage-product.component"
           <th>Availability</th>
           <th>Rating</th>
           <th>Tools</th>
+          <th>Manage Images</th>
         </tr>
         </thead>
         <tbody>
@@ -139,6 +141,13 @@ import {ManageProductComponent} from "./manage-product/manage-product.component"
                       aria-label="Example icon button with a open in new tab icon">
                 <mat-icon>edit</mat-icon>
               </button>
+            </div>
+          </td>
+          <td>
+            <div class="context">
+              <a (click)="openProductImageForm(item)">
+                manage
+              </a>
             </div>
           </td>
         </tr>
@@ -229,5 +238,12 @@ export class ProductComponent implements OnInit {
         data: {type:"Add"},
       }
     )
+  }
+
+  openProductImageForm(item: any) {
+    let matDialogRef = this.matDialog.open(ManageProductImagesComponent, {
+      width: '500px',
+      data: item,
+    });
   }
 }
