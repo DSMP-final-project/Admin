@@ -21,7 +21,7 @@ import {UserService} from "../../service/user.service";
     RouterOutlet,
   ],
   template: `
-    <mat-toolbar color="primary" style="display: flex; justify-content: space-between">
+    <mat-toolbar style="display: flex; justify-content: space-between; background-color: #1F4690">
       <div style="display: flex; align-items: center">
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
@@ -37,6 +37,7 @@ import {UserService} from "../../service/user.service";
     </mat-toolbar>
 
     <mat-sidenav-container class="sidenav-container">
+
       <mat-sidenav #sidenav mode="side" class="sidenav">
         <mat-nav-list>
           <a mat-list-item routerLink="/dashboard/customer" ariaCurrentWhenActive="page">
@@ -51,12 +52,14 @@ import {UserService} from "../../service/user.service";
             <mat-icon matListItemIcon>inventory_2</mat-icon>
             <span matListItemTitle>Product</span>
           </a>
+
+          <div style="margin: 5px">
+            <p> &copy; {{ year }} SecretSanta. All rights reserved.</p>
+          </div>
         </mat-nav-list>
       </mat-sidenav>
 
       <mat-sidenav-content class="sidenav-content">
-        <h1>Welcome to {{ title }}!</h1>
-        <p>This is the main content area. Select an item from the side navigation to get started.</p>
         <router-outlet/>
       </mat-sidenav-content>
     </mat-sidenav-container>
@@ -65,6 +68,8 @@ import {UserService} from "../../service/user.service";
 })
 export class SideBarComponent {
   title: string = 'sid bar';
+
+  year= new Date().getFullYear()
 
   constructor(private readonly router: Router) {
   }
@@ -81,4 +86,6 @@ export class SideBarComponent {
       }
     })
   }
+
+  protected readonly Date = Date;
 }

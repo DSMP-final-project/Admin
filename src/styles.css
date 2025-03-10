@@ -1,4 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+:host {
+  display: block;
+  padding: 20px;
+}
+
+h1 {
+  color: #3f51b5;
+  margin-bottom: 20px;
+}
+
+.mat-mdc-table {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.mat-mdc-paginator {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.search {
+  text-decoration: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.searchIcon {
+  text-decoration: none;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  border: 2px solid #1F4690;
+  padding: 0 3px;
+  border-radius: 10px;
+}
+
+
+
