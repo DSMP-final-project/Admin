@@ -83,6 +83,7 @@ export class SideBarComponent {
       },
       error: (e) => {
         console.error(e)
+        this.router.navigate(['/']);
       }
     })
   }

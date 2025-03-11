@@ -49,7 +49,7 @@ import {ManageProductImagesComponent} from "./manage-product-image/manage-produc
   ],
   template: `
     <div style="display: flex; justify-content: space-between">
-      <h1>Product</h1>
+      <h1>Product Manage</h1>
       <div style="display:flex; gap: 5px; align-items: center">
         <form class="search-form">
           <input [formControl]="search" type="search" name="search" id="search" placeholder="search product"

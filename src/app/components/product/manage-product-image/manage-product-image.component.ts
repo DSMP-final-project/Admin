@@ -115,7 +115,6 @@ export class ManageProductImagesComponent implements OnInit {
         this.selectedImage = null;
         fileInput.value = '';
         return;
-        // Show a warning or error message to the user indicating that the file size is too large.
       }
     }
   }

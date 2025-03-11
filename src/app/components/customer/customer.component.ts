@@ -60,7 +60,7 @@ import {CustomerService} from "../../service/customer.service";
       <table class="table col-12">
         <thead>
         <tr>
-          <th>#id</th>
+          <th>#customer id</th>
           <th>first name</th>
           <th>last name</th>
           <th>userName</th>
